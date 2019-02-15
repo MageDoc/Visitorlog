@@ -33,7 +33,7 @@ class Aydus_Visitorlog_Model_Log_Resource_Visitor extends Mage_Log_Model_Resourc
                         ->where('visitor_id = ?', $object->getId())->limit(1);
 
         $customerResult = $adapter->query($customerSelect)->fetch();
-        if (count($customerResult) > 0 && (int) $customerResult['customer_id']) {
+        if ($customerResult && count($customerResult) > 0 && (int) $customerResult['customer_id']) {
 
             $customerId = $customerResult['customer_id'];
             $customer = Mage::getModel('customer/customer')->load($customerId);
